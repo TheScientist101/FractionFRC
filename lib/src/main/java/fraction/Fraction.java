@@ -1,4 +1,4 @@
-package Fraction;
+package fraction;
 
 import java.lang.Math;
 
@@ -14,6 +14,7 @@ public class Fraction {
         this.numerator = numerator;
         this.denominator = denominator;
     }
+
     // Whole numbers
     public Fraction(int numerator) {
         this(numerator, 1);
@@ -24,6 +25,7 @@ public class Fraction {
         this(0, 1);
     }
 
+    // methods
     public int getNumerator() {
         return numerator;
     }
@@ -32,13 +34,16 @@ public class Fraction {
         return denominator;
     }
 
-    public void simplify() {
+    // Simplify the fraction
+    public void reduce() {
         int greatestCommonFactor = 1;
+        // Find the greatest common factor
         for (int i = 1; i <= Math.min(numerator, denominator); i++) {
             if (numerator % i == 0 && denominator % i == 0) {
                 greatestCommonFactor = i;
             }
         }
+        // Divide the numerator and denominator by the greatest common factor
         this.denominator /= greatestCommonFactor;
         this.numerator /= greatestCommonFactor;
     }
@@ -47,7 +52,7 @@ public class Fraction {
         int newNumerator = this.numerator * other.denominator + this.denominator * other.numerator;
         int newDenominator = this.denominator * other.denominator;
         Fraction newFraction = new Fraction(newNumerator, newDenominator);
-        newFraction.simplify();
+        newFraction.reduce();
         return newFraction;
     }
 
@@ -55,7 +60,7 @@ public class Fraction {
         int newNumerator = this.numerator * other.denominator - this.denominator * other.numerator;
         int newDenominator = this.denominator * other.denominator;
         Fraction newFraction = new Fraction(newNumerator, newDenominator);
-        newFraction.simplify();
+        newFraction.reduce();
         return newFraction;
     }
 
@@ -63,7 +68,7 @@ public class Fraction {
         int newNumerator = this.numerator * other.numerator;
         int newDenominator = this.denominator * other.denominator;
         Fraction newFraction = new Fraction(newNumerator, newDenominator);
-        newFraction.simplify();
+        newFraction.reduce();
         return newFraction;
     }
 
@@ -71,7 +76,7 @@ public class Fraction {
         int newNumerator = this.numerator * other.denominator;
         int newDenominator = this.denominator * other.numerator;
         Fraction newFraction = new Fraction(newNumerator, newDenominator);
-        newFraction.simplify();
+        newFraction.reduce();
         return newFraction;
     }
 
